@@ -18,6 +18,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class MInventory {
@@ -38,6 +40,11 @@ public class MInventory {
         }
         client.runScript(915, 3); //open inventory
     }
+
+    public static List<WidgetItem> find(Predicate<? super WidgetItem> pred) {
+        return getInvWidgets().stream().filter(pred).collect(Collectors.toList());
+    }
+
     public static boolean dropAllExcept(String...items){
         List<String> dontDrop = Arrays.asList(items);
         inventory.forEach((slot, widget) ->{

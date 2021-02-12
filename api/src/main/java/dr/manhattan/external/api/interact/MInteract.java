@@ -7,6 +7,9 @@ import net.runelite.api.GameObject;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.MenuOpcode;
 import net.runelite.api.ObjectDefinition;
+import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetItem;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,5 +63,17 @@ public class MInteract {
         log.info("Click as well..");
         MMouse.delayMouseClick(go.getConvexHull(), 0);
         return true;
+    }
+
+    public static boolean UseItemOnObject(WidgetItem item, GameObject object) {
+        throw new NotImplementedException();
+    }
+
+    public static boolean NPC(GameObject go, String... actions) {
+        throw new NotImplementedException();
+    }
+
+    public static boolean Widget(Widget widget, String... actions) {
+        throw new NotImplementedException();
     }
 }

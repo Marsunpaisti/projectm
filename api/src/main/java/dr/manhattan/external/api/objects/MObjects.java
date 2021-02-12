@@ -6,10 +6,14 @@ import net.runelite.api.Client;
 import net.runelite.api.GameObject;
 import net.runelite.api.LocatableQueryResults;
 import net.runelite.api.ObjectDefinition;
+
+import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.queries.TileObjectQuery;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static java.lang.Math.abs;
 
 @Slf4j
 public class MObjects extends TileObjectQuery<GameObject, MObjects> {
@@ -54,4 +58,16 @@ public class MObjects extends TileObjectQuery<GameObject, MObjects> {
                 .distinct()
                 .collect(Collectors.toList()));
     }
+
+    public MObjects isWithinArea(WorldPoint from, int area)
+    {
+        predicate = and(a ->
+        {
+            WorldPoint location = a.getWorldLocation();
+            return abs(location.getX() - from.getX()) < area
+                    && abs(location.getY() - from.getY()) < area;
+        });
+        return this;
+    }
+
 }

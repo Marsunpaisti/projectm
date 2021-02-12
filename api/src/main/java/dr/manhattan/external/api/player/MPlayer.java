@@ -43,4 +43,10 @@ public class MPlayer {
 
         return !isAnimating() && !isMoving();
     }
+
+    public static boolean isRunEnabled()
+    {
+        Client client = M.getInstance().getClient();
+        return client.getVarpValue(173) == 1;
+    }
 }
